@@ -10,3 +10,6 @@ class TestBowlingScore(unittest.TestCase):
     
     def test_scores_45(self):
         self.assertEqual(bowling_score("45"), 9)
+
+    def test_score_spare(self):
+        self.assertEqual(bowling_score("6/ 42"), 20)
