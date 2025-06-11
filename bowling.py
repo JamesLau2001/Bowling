@@ -6,18 +6,23 @@ def bowling_score(score):
 
     while current_frame_idx < len(frames_list):
         current_frame = frames_list[current_frame_idx]
+        if current_frame_idx != len(frames_list) - 1:
+            next_frame = frames_list[current_frame_idx + 1]
 
-        # handling strikes
+        # handling strike as last frame
         if current_frame == "X" and current_frame_idx == len(frames_list) - 1:
             total_score += 10
 
+        # handle strike followed by spare
+        elif current_frame == "X" and "/" in next_frame:
+            total_score += 20
+
+        # handle strike followed by non-spare
         elif current_frame == "X":
-            next_frame = frames_list[current_frame_idx + 1]        
             total_score += 10 + int(next_frame[0]) + int(next_frame[1])
 
         # handling spares
         if len(current_frame) == 2 and '/' in current_frame:
-            next_frame = frames_list[current_frame_idx + 1]
             first_score_of_next_frame = int(next_frame[0])           
             total_score += 10 + first_score_of_next_frame
 
