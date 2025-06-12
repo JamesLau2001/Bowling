@@ -25,3 +25,8 @@ class TestBowlingScore(unittest.TestCase):
         
     def test_score_one_strike_followed_by_spare(self):
         self.assertEqual(bowling_score("X 8/ 2/ 33"), 51)
+
+    def test_score_one_spare_followed_by_strike(self):
+        self.assertEqual(bowling_score("8/ X"), 30)
+        self.assertEqual(bowling_score("53 42 8/ X"), 44)
+
