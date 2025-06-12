@@ -19,16 +19,16 @@ class TestBowlingScore(unittest.TestCase):
         self.assertEqual(bowling_score("8/ 2/ 33"), 31)
 
     def test_non_consecutive_strikes(self):
-        self.assertEqual(bowling_score("X"), 10)
+        self.assertEqual(bowling_score("X"), 0)
         self.assertEqual(bowling_score("X 43 2/ 33"), 43) # this is not a non-consecutive strike
-        self.assertEqual(bowling_score("X 43 X"), 34)
+        self.assertEqual(bowling_score("X 43 X"), 24)   
         
     def test_one_strike_followed_by_spare(self):
         self.assertEqual(bowling_score("X 8/ 2/ 33"), 51)
-
+    
     def test_one_spare_followed_by_strike(self):
-        self.assertEqual(bowling_score("8/ X"), 30)
-        self.assertEqual(bowling_score("53 42 8/ X"), 44)
+        self.assertEqual(bowling_score("8/ X 52"), 44)     
+        self.assertEqual(bowling_score("53 42 8/ X 62"), 60)
 
     def test_double_strikes(self):
         self.assertEqual(bowling_score("X X 52 11 11"), 53)
@@ -40,5 +40,20 @@ class TestBowlingScore(unittest.TestCase):
         self.assertEqual(bowling_score("X X X X 52"),109)
         self.assertEqual(bowling_score("X X X X X 52"),139)
 
+    def test_final_frame_has_one_strike(self):
+        self.assertEqual(bowling_score("11 11 11 11 11 11 11 11 11 XXX"), 48)
+        self.assertEqual(bowling_score("11 11 11 11 11 11 11 11 11 X5/"), 38)
+        self.assertEqual(bowling_score("11 11 11 11 11 11 11 11 11 5/X"), 38)
         
-        
+    def test_final_frame_has_one_spare(self):
+        self.assertEqual(bowling_score("11 11 11 11 11 11 11 11 11 5/5"), 33)
+
+    def test_final_frame_has_strike_and_open_frame(self):
+        self.assertEqual(bowling_score("11 11 11 11 11 11 11 11 11 X25"), 35)
+    
+    
+    # "11 11 11 11 11 11 11 11 X X5/"
+    # "11 11 11 11 11 11 11 11 5/ 5/X"
+    # "11 11 11 11 11 11 11 11 X 5/5"
+                            
+    
