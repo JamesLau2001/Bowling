@@ -17,7 +17,10 @@ def bowling_score(score):
         elif current_frame == "X" and "/" in next_frame:
             total_score += 20
 
-        # # handle double strike folowed by spare or open frame
+        elif current_frame == "X" and next_frame == "X" and frames_list[current_frame_idx + 2] == "X":
+            total_score += 30
+            
+        # handle double strike folowed by spare or open frame
         elif current_frame == "X" and next_frame == "X":
             total_score += 20 + int(frames_list[current_frame_idx + 2][0])
             

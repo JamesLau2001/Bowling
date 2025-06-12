@@ -34,5 +34,11 @@ class TestBowlingScore(unittest.TestCase):
         self.assertEqual(bowling_score("X X 52 11 11"), 53)
         self.assertEqual(bowling_score("X X 5/ 11"), 58)
         self.assertEqual(bowling_score("X X 52"), 49)
+
+    def test_two_plus_strikes_middle_game(self):
+        self.assertEqual(bowling_score("X X X 52"),79)
+        self.assertEqual(bowling_score("X X X X 52"),109)
+        self.assertEqual(bowling_score("X X X X X 52"),139)
+
         
         
